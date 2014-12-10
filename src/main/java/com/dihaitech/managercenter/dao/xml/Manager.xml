@@ -133,7 +133,6 @@
 	
 	<update id="editSaveUser" parameterType="manager">
 		update `manager` set 
-              `EMAIL` = #{email}, 
               `NICKNAME` = #{nickname}
         	where ID = #{id}
 	</update>
