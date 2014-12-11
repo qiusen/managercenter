@@ -5,6 +5,7 @@
 <head>
 <title>管理员 修改</title>
 <%@ include file="/jsp/common/meta.jsp"%>
+<script charset="utf-8" src="${base}/js/jquery.upload.js" type="text/javascript" ></script>
 <script language="javascript">
 function checkForm(){
 	var ename = document.getElementById("manager.ename").value;
@@ -32,6 +33,40 @@ function checkForm(){
 	}
 	return true;
 }
+
+//图片上传
+function doUpload(element) {
+	// 上传方法
+	$.upload({
+			// 上传地址
+			url: '${base}/fileUploadServlet', 
+			// 文件域名字
+			fileName: 'imageFile',
+			// 其他表单数据
+			params: {
+				name: 'pxblog'
+			},
+			// 上传完成后, 返回json, text
+			dataType: 'json',
+			// 上传之前回调,return true表示可继续上传
+			onSend: function() {
+				return true;
+			},
+			// 上传之后回调
+			onComplate: function(data) {
+				if(data.message != ''){
+					$.ligerDialog.warn(data.message);
+					return;
+				}
+				if(element)
+					element.src = data.filePath;
+				$('.logo_img_view').attr('src',data.filePath)
+				//$("#titleImg").val(data.filePath);
+				document.getElementById("manager.logo").value=data.filePath;
+				//alert(document.getElementById("article.articleImg").value);
+			}
+	});
+}
 </script>
 <style type="text/css">
     body{ font-size:12px;}
@@ -44,7 +79,23 @@ function checkForm(){
 <body>
 <form name="managerForm" id="managerForm" method="post" action="managerAction!editSave.${actionExt}" onsubmit="return checkForm();">
 <input type="hidden" id="manager.id" name="manager.id" value="${requestScope.manager.id}"/>
+<input type="hidden" name="manager.logo" id="manager.logo" value="${requestScope.manager.logo}"/>
 <table cellpadding="0" cellspacing="0" class="l-table-edit" style="margin-top:50px;margin-left:50px;">
+    <tr>
+    	<td align="right" class="l-table-edit-td">LOGO：</td>
+    	<td align="left" class="l-table-edit-td">
+    	<c:choose>
+    	<c:when test="${requestScope.manager.logo!=null && requestScope.manager.logo!=''}">
+    	<img class="logo_img_view" src="${requestScope.manager.logo}" onclick="doUpload()" style="max-height:150px;height: expression(this.height > 150 ? 150: true);margin:9px;border:0px;cursor：hand;"/>150x150
+    	</c:when>
+    	<c:otherwise>
+    	<img class="logo_img_view" src="${base }/image/noimg.jpg" onclick="doUpload()" style="max-height:150px;height: expression(this.height > 150 ? 150: true);margin:9px;border:0px;cursor：hand;"/>150x150
+    	</c:otherwise>
+    	</c:choose>
+    	
+	    </td>
+    	<td align="left"></td>
+    </tr>
     <tr>
         <td align="right" class="l-table-edit-td">邮箱：</td>
         <td align="left" class="l-table-edit-td"><input name="manager.email" type="text" id="manager.email" ltype="text" value="${requestScope.manager.email}" /></td>

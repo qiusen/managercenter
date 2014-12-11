@@ -34,6 +34,11 @@ public class Manager extends BaseModel{
 	 */
 	private String ename;
 	
+	/**
+	 * LOGO
+	 */
+	private String logo;
+	
 	
 	/**
 	 * 状态
@@ -136,6 +141,12 @@ public class Manager extends BaseModel{
 	}
 	public void setEname(String ename) {
 		this.ename = ename;
+	}
+	public String getLogo() {
+		return logo;
+	}
+	public void setLogo(String logo) {
+		this.logo = logo;
 	}
 	
 	

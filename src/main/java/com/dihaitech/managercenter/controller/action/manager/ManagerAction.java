@@ -134,11 +134,13 @@ public class ManagerAction extends BaseAction {
 	 * @return
 	 */
 	public String addSave(){
+		Manager managerVO = (Manager)this.getSession().getAttribute("manager");
+		manager.setCreator(managerVO.getEmail());
 		manager.setCreatetime(new Date());
 		manager.setPassword(MD5Util.stringToMD5(manager.getPassword()));
 		managerService.addSave(manager);
 		
-		Manager managerVO = (Manager)this.getSession().getAttribute("manager");
+		
 		//记录日志
 		MDC.put("email", managerVO.getEmail());	//邮箱
 		MDC.put("nickname", managerVO.getNickname());	//昵称

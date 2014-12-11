@@ -42,7 +42,7 @@
 	</sql>
 	
 	<sql id="managerField">
-		`ID`, `PASSWORD`, `EMAIL`, `NICKNAME`, `ENAME`, `STATUS`, `ROLE_ID`, `CREATOR`, `CREATETIME`, `LOGINTIME`, `LOGINIP`
+		`ID`, `PASSWORD`, `EMAIL`, `NICKNAME`, `ENAME`, `LOGO`, `STATUS`, `ROLE_ID`, `CREATOR`, `CREATETIME`, `LOGINTIME`, `LOGINIP`
 	</sql>
 	
 	<resultMap id="managerMap" type="manager">
@@ -51,6 +51,7 @@
 	    	<result property="email" column="EMAIL" javaType="java.lang.String" jdbcType="VARCHAR" />
 	    	<result property="nickname" column="NICKNAME" javaType="java.lang.String" jdbcType="VARCHAR" />
 	    	<result property="ename" column="ENAME" javaType="java.lang.String" jdbcType="VARCHAR" />
+	    	<result property="logo" column="LOGO" javaType="java.lang.String" jdbcType="VARCHAR" />
 	    	<result property="status" column="STATUS" javaType="java.lang.Integer" jdbcType="INTEGER" />
 	    	<result property="roleId" column="ROLE_ID" javaType="java.lang.Integer" jdbcType="INTEGER" />
 	    	<result property="creator" column="CREATOR" javaType="java.lang.String" jdbcType="VARCHAR" />
@@ -65,6 +66,7 @@
            `EMAIL`, 
            `NICKNAME`, 
            `ENAME`, 
+           `LOGO`,
            `STATUS`, 
            `ROLE_ID`, 
            `CREATOR`, 
@@ -77,6 +79,7 @@
             #{email}, 
             #{nickname}, 
             #{ename}, 
+            #{logo}, 
             #{status}, 
             #{roleId}, 
             #{creator}, 
@@ -95,10 +98,13 @@
 	
 	<update id="editSaveManager" parameterType="manager">
 		update `manager` set 
-              `PASSWORD` = #{password}, 
+			<if test="password != null and password!=''">  
+			   `PASSWORD` = #{password},
+		    </if> 
               `EMAIL` = #{email}, 
               `NICKNAME` = #{nickname}, 
               `ENAME` = #{ename}, 
+              `LOGO`= #{logo},
               `STATUS` = #{status}, 
               `ROLE_ID` = #{roleId}, 
               `LOGINTIME` = #{logintime}, 
