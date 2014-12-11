@@ -27,6 +27,13 @@
 				<ref bean="departmentService" />
 			</property>
 	  </bean>
+	  
+	  <!-- 职位 action -->
+	  <bean id="positionAction" class="com.dihaitech.managercenter.controller.action.position.PositionAction" scope="prototype">
+			<property name="positionService">
+				<ref bean="positionService" />
+			</property>
+	  </bean>
 
 
 

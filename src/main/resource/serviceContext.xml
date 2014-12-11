@@ -36,4 +36,7 @@
 	  
 	  <!-- 部门 service -->	
 	  <bean id="departmentService" class="com.dihaitech.managercenter.service.impl.DepartmentServiceImpl"/>
+	  
+	  <!-- 职位 service -->	
+	  <bean id="positionService" class="com.dihaitech.managercenter.service.impl.PositionServiceImpl"/>
 </beans>

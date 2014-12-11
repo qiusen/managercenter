@@ -318,5 +318,31 @@
     </package> 
     <!-- 部门Action End -->
     
+    <!-- 职位Action Begin -->
+    <package name="struts-admin-position" namespace="/admin/position" extends="struts-interceptor">
+		<action name="positionAction" class="positionAction">
+			<result name="success" type="dispatcher">/jsp/admin/position/positionList.jsp</result>
+			<result name="add" type="dispatcher">/jsp/admin/position/positionAdd.jsp</result>
+			<result name="addSave" type="redirectAction">
+				<param name="actionName">positionAction</param>
+				<param name="namespace">/admin/position</param>
+			</result>
+
+			<result name="edit" type="dispatcher">/jsp/admin/position/positionEdit.jsp</result>
+			<result name="editSave" type="redirectAction">
+				<param name="actionName">positionAction</param>
+				<param name="namespace">/admin/position</param>
+			</result>
+			
+			<result name="deleteSuccess" type="redirectAction">
+				<param name="actionName">positionAction</param>
+				<param name="namespace">/admin/position</param>
+			</result>
+			
+			<interceptor-ref name="common-params"/>
+        </action>
+    </package> 
+    <!-- 职位Action End -->
+    
     
 </struts>
