@@ -51,7 +51,7 @@ public class SessionFilter implements Filter {
 			if (manager != null) {
 				
 				//判断权限，放过/user下所有权限
-				if(nameSpaceStr.equalsIgnoreCase("/userInfo") || hasRights(httpRequest, manager, nameSpaceStr)){
+				if(nameSpaceStr.equalsIgnoreCase("/userInfo") || nameSpaceStr.equalsIgnoreCase("/managerInfo") || hasRights(httpRequest, manager, nameSpaceStr)){
 					chain.doFilter(request, response);
 				}else{
 					httpResponse.sendRedirect(Property.BASE + "/jsp/common/noRights.jsp");

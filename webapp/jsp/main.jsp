@@ -118,7 +118,7 @@ window.location="${base}";
                     </c:forEach>
                      <div title="个人资料">
                     <div style=" height:7px;"></div>
-                          <a class="l-link" href="javascript:f_addTab('changeinfo','个人信息修改','${base}/userInfo/userInfo.${actionExt}')">个人信息修改</a>
+                          <a class="l-link" href="javascript:f_addTab('changeinfo','个人信息修改','${base}/managerInfo/managerInfoAction.${actionExt}')">个人信息修改</a>
                           <a class="l-link" href="javascript:f_addTab('changepasswd','密码修改','${base}/userInfo/userInfo!editPassword.${actionExt}')">密码修改</a>  
                     </div> 
         </div>

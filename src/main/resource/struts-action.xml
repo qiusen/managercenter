@@ -25,6 +25,20 @@
 		</action>
 	</package>
 	<!-- 个人信息的Action End -->
+	<!-- 管理员详细信息Action Begin -->
+    <package name="struts-admin-managerInfo" namespace="/managerInfo" extends="struts-interceptor">
+		<action name="managerInfoAction" class="managerInfoAction">
+			
+			<result name="success" type="dispatcher">/jsp/admin/managerInfo/managerInfoEdit.jsp</result>
+			<result name="editSave" type="redirectAction">
+				<param name="actionName">managerInfoAction</param>
+				<param name="namespace">/admin/managerInfo</param>
+			</result>
+			
+			<interceptor-ref name="common-params"/>
+        </action>
+    </package> 
+    <!-- 管理员详细信息Action End -->
 
 	<!-- 管理员Action Begin -->
     <package name="struts-admin-manager" namespace="/admin/manager" extends="struts-interceptor">

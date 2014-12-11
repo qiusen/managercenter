@@ -30,6 +30,12 @@ public class Manager extends BaseModel{
 	private String nickname;
 	
 	/**
+	 * 英文名
+	 */
+	private String ename;
+	
+	
+	/**
 	 * 状态
 	 */
 	private Integer status;
@@ -124,6 +130,12 @@ public class Manager extends BaseModel{
 	}
 	public void setRightsMap(Map<String, Module> rightsMap) {
 		this.rightsMap = rightsMap;
+	}
+	public String getEname() {
+		return ename;
+	}
+	public void setEname(String ename) {
+		this.ename = ename;
 	}
 	
 	

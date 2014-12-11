@@ -8,7 +8,8 @@ CREATE TABLE `MANAGER` (
   `ID` int(11) NOT NULL auto_increment,
   `EMAIL` varchar(255) NOT NULL COMMENT '邮箱',
   `PASSWORD` varchar(255) NOT NULL default '' COMMENT '密码',
-  `NICKNAME` varchar(255) NOT NULL COMMENT '昵称',
+  `NICKNAME` varchar(255) NOT NULL COMMENT '姓名',
+  `ENAME` varchar(255) NOT NULL COMMENT '英文名',
   `STATUS` int(2) NOT NULL COMMENT '状态',
   `ROLE_ID` int(11) NOT NULL COMMENT '角色ID',
   `CREATOR` varchar(255) NOT NULL COMMENT '创建人',
@@ -19,8 +20,27 @@ CREATE TABLE `MANAGER` (
   index(EMAIL)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='管理员';
 
-insert into MANAGER(`EMAIL`,`PASSWORD`,`NICKNAME`,`STATUS`,`ROLE_ID`,`CREATOR`,`CREATETIME`,`LOGINTIME`,`LOGINIP`) 
-values('qiu_sen@126.com','21232f297a57a5a743894a0e4a801fc3','超级管理员',1,1,'admin','2012-08-01 08:08:08','2012-08-01 08:08:08','127.0.0.1');
+insert into MANAGER(`EMAIL`,`PASSWORD`,`NICKNAME`,`ENAME`,`STATUS`,`ROLE_ID`,`CREATOR`,`CREATETIME`,`LOGINTIME`,`LOGINIP`) 
+values('qiu_sen@126.com','21232f297a57a5a743894a0e4a801fc3','邱森','Nathan',1,1,'admin','2012-08-01 08:08:08','2012-08-01 08:08:08','127.0.0.1');
+
+
+DROP TABLE IF EXISTS MANAGER_INFO CASCADE;
+CREATE TABLE `MANAGER_INFO` (
+  `ID` int(11) NOT NULL auto_increment,
+  `EMAIL` varchar(255) NOT NULL COMMENT '邮箱',
+  `TEL`  varchar(255) NOT NULL COMMENT '座机',
+  `MOBEL` varchar(255) NOT NULL COMMENT '手机',
+  `SEX` int(2) NOT NULL COMMENT '性别：0、保密；1、男；2、女',
+  `ADDRESS` varchar(255) NOT NULL COMMENT '联系地址',
+  `QQ` varchar(255) NOT NULL COMMENT 'QQ',
+  `CREATOR` varchar(255) NOT NULL COMMENT '创建人',
+  `CREATETIME` datetime default '0000-00-00 00:00:00' COMMENT '创建时间',
+  `UPDATOR` varchar(255) default NULL COMMENT '修改人',
+  `UPDATETIME` datetime default '2000-01-01 00:00:00' COMMENT '修改时间',
+  PRIMARY KEY  (`id`),
+  index(EMAIL)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='管理员详细信息';
+
 
 DROP TABLE IF EXISTS ROLE CASCADE;
 CREATE TABLE `ROLE` (

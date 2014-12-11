@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dihaitech.managercenter.dao.IManagerInfoDAO">
+	
+	<cache flushInterval="600000" eviction="LRU" type="org.mybatis.caches.oscache.OSCache"/>
+	
+	<sql id="managerInfoLikeWhere">
+		<where>
+            <if test ="id != null and id > -1">
+				and `ID` = #{id}
+			</if>
+	        <if test ="email != null and email != ''">
+			    and `EMAIL` like '%${email}%'
+		    </if>
+	        <if test ="tel != null and tel != ''">
+			    and `TEL` like '%${tel}%'
+		    </if>
+	        <if test ="mobel != null and mobel != ''">
+			    and `MOBEL` like '%${mobel}%'
+		    </if>
+            <if test ="sex != null and sex > -1">
+				and `SEX` = #{sex}
+			</if>
+	        <if test ="address != null and address != ''">
+			    and `ADDRESS` like '%${address}%'
+		    </if>
+	        <if test ="qq != null and qq != ''">
+			    and `QQ` like '%${qq}%'
+		    </if>
+		</where>
+	</sql>
+	
+	<sql id="managerInfoPage">
+		<if test="null != start">
+		  limit #{start},#{pageSize}
+		</if>
+	</sql>
+	
+	<sql id="managerInfoField">
+		`ID`, `EMAIL`, `TEL`, `MOBEL`, `SEX`, `ADDRESS`, `QQ`, `UPDATETIME`
+	</sql>
+	
+	<resultMap id="managerInfoMap" type="managerInfo">
+	    	<result property="id" column="ID" javaType="java.lang.Integer" jdbcType="INTEGER" />
+	    	<result property="email" column="EMAIL" javaType="java.lang.String" jdbcType="VARCHAR" />
+	    	<result property="tel" column="TEL" javaType="java.lang.String" jdbcType="VARCHAR" />
+	    	<result property="mobel" column="MOBEL" javaType="java.lang.String" jdbcType="VARCHAR" />
+	    	<result property="sex" column="SEX" javaType="java.lang.Integer" jdbcType="INTEGER" />
+	    	<result property="address" column="ADDRESS" javaType="java.lang.String" jdbcType="VARCHAR" />
+	    	<result property="qq" column="QQ" javaType="java.lang.String" jdbcType="VARCHAR" />
+	    	<result property="updatetime" column="UPDATETIME" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+	</resultMap>
+	
+	<insert id="addSaveManagerInfo" parameterType="managerInfo">
+		insert into `manager_info` (
+           `EMAIL`, 
+           `TEL`, 
+           `MOBEL`, 
+           `SEX`, 
+           `ADDRESS`, 
+           `QQ`, 
+           `UPDATETIME`
+		) values 
+		(
+            #{email}, 
+            #{tel}, 
+            #{mobel}, 
+            #{sex}, 
+            #{address}, 
+            #{qq}, 
+            #{updatetime}
+		)
+		<selectKey keyProperty="id"  resultType="java.lang.Integer">
+			select last_insert_id() as id from `manager_info` limit 1
+		</selectKey>
+	</insert>
+	
+	<delete id="deleteByIds" parameterType="String">
+		delete from `manager_info` ${_parameter}
+	</delete>
+	
+	<update id="editSaveManagerInfo" parameterType="managerInfo">
+		update `manager_info` set 
+              `EMAIL` = #{email}, 
+              `TEL` = #{tel}, 
+              `MOBEL` = #{mobel}, 
+              `SEX` = #{sex}, 
+              `ADDRESS` = #{address}, 
+              `QQ` = #{qq}, 
+              `UPDATETIME` = #{updatetime}
+        	where ID = #{id}
+	</update>
+	
+	<update id="editSaveManagerInfoByEmail" parameterType="managerInfo">
+		update `manager_info` set 
+              `TEL` = #{tel}, 
+              `MOBEL` = #{mobel}, 
+              `SEX` = #{sex}, 
+              `ADDRESS` = #{address}, 
+              `QQ` = #{qq}, 
+              `UPDATETIME` = #{updatetime}
+        	where `EMAIL` = #{email}
+	</update>
+	
+	<select id="selectManagerInfoById" parameterType="managerInfo" resultMap="managerInfoMap"  >
+		SELECT * FROM `manager_info` where ID = #{id}
+	</select>
+	
+	<select id="selectManagerInfoByEmail" parameterType="managerInfo" resultMap="managerInfoMap"  >
+		SELECT * FROM `manager_info` where `EMAIL` = #{email}
+	</select>
+	
+	<select id="getManagerInfoCount" parameterType="managerInfo" resultType="Long" >
+		select count(*) from `manager_info`
+		<include refid="managerInfoLikeWhere" />
+	</select>
+	
+	<select id="selectAll" parameterType="managerInfo" resultMap="managerInfoMap" >
+		select * from `manager_info`
+	</select>
+	
+	<select id="selectManagerInfoLike" parameterType="managerInfo" resultMap="managerInfoMap" >
+		SELECT <include refid="managerInfoField" /> FROM `manager_info`
+	        <include refid="managerInfoLikeWhere" />
+			order by ID desc
+	        <include refid="managerInfoPage" /> 
+	</select>
+</mapper>

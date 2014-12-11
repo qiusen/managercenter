@@ -7,9 +7,9 @@
 <%@ include file="/jsp/common/meta.jsp"%>
 <script language="javascript">
 function checkForm(){
-	var username = document.getElementById("manager.username").value;
-	if(username==null || username==''){
-		alert("请输入用户名！");
+	var ename = document.getElementById("manager.ename").value;
+	if(ename==null || ename==''){
+		alert("请输入英文名！");
 		return false;
 	}
 
@@ -27,7 +27,7 @@ function checkForm(){
 
 	var nickname = document.getElementById("manager.nickname").value;
 	if(nickname==null || nickname==''){
-		alert("请输入昵称！");
+		alert("请输入姓名！");
 		return false;
 	}
 	return true;
@@ -46,8 +46,8 @@ function checkForm(){
 <input type="hidden" id="manager.id" name="manager.id" value="${requestScope.manager.id}"/>
 <table cellpadding="0" cellspacing="0" class="l-table-edit" style="margin-top:50px;margin-left:50px;">
     <tr>
-        <td align="right" class="l-table-edit-td">用户名：</td>
-        <td align="left" class="l-table-edit-td"><input name="manager.username" type="text" id="manager.username" ltype="text" value="${requestScope.manager.username}" readonly="readonly"/></td>
+        <td align="right" class="l-table-edit-td">邮箱：</td>
+        <td align="left" class="l-table-edit-td"><input name="manager.email" type="text" id="manager.email" ltype="text" value="${requestScope.manager.email}" /></td>
         <td align="left"><font color="red">*</font></td>
     </tr>
     <tr>
@@ -56,13 +56,13 @@ function checkForm(){
         <td align="left"><font color="red">不填写表示不修改密码</font></td>
     </tr>
     <tr>
-        <td align="right" class="l-table-edit-td">邮箱：</td>
-        <td align="left" class="l-table-edit-td"><input name="manager.email" type="text" id="manager.email" ltype="text" value="${requestScope.manager.email}" /></td>
+        <td align="right" class="l-table-edit-td">姓名：</td>
+        <td align="left" class="l-table-edit-td"><input name="manager.nickname" type="text" id="manager.nickname" ltype="text" value="${requestScope.manager.nickname}" /></td>
         <td align="left"><font color="red">*</font></td>
     </tr>
     <tr>
-        <td align="right" class="l-table-edit-td">昵称：</td>
-        <td align="left" class="l-table-edit-td"><input name="manager.nickname" type="text" id="manager.nickname" ltype="text" value="${requestScope.manager.nickname}" /></td>
+        <td align="right" class="l-table-edit-td">英文名：</td>
+        <td align="left" class="l-table-edit-td"><input name="manager.ename" type="text" id="manager.ename" ltype="text" value="${requestScope.manager.ename}" readonly="readonly"/></td>
         <td align="left"><font color="red">*</font></td>
     </tr>
     <tr>

@@ -31,4 +31,6 @@
 	  <!-- 字典 service -->	
 	  <bean id="dictService" class="com.dihaitech.managercenter.service.impl.DictServiceImpl"/>
 	  
+	  <!-- 管理员详细信息 service -->	
+	  <bean id="managerInfoService" class="com.dihaitech.managercenter.service.impl.ManagerInfoServiceImpl"/>
 </beans>

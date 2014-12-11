@@ -36,7 +36,7 @@ function onsubmit(){
         <div class="BoxR">
             <div class="BoxRCon">
             <form id="loginform" action="${base }/login.${actionExt}" method="post">
-                <div class="fishT"><%=Property.SYSTEM_NAME %>登录</div>
+                <div class="fishT"><%=Property.SYSTEM_NAME %></div>
                 <div class="line1 MT30">
                     <i class=""></i>
                     <div class="">邮箱</div>

@@ -23,9 +23,10 @@ function f_initGrid(){
     	title:'管理员列表',
         columns: [
         //{ display: '主键', name: 'id', width: 50, type: 'int', frozen: true },
-        { display: '用户名', name: 'username',type: 'text' , width: '15%'},
+        
         { display: '邮箱', name: 'email', type: 'text', width: '15%' },
-        { display: '昵称', name: 'nickname', type: 'text', width: '10%' },
+        { display: '姓名', name: 'nickname', type: 'text', width: '10%' },
+        { display: '英文名', name: 'ename',type: 'text' , width: '15%'},
         { display: '状态', name: 'status', width: '10%',render: function (rowdata, rowindex, value)
         {
         	var h = "-";
@@ -194,7 +195,6 @@ function itemclick(item)
 <input type="hidden" name="pageNo" id="pageNo" value="${requestScope.pageInfo.page}" />
 <input type="hidden" name="pageSize" id="pageSize" value="${requestScope.pageInfo.pageSize}" />
 <div id="searchbar">
-    用户名：<input id="manager.username" type="text" name="manager.username" value="${manager.username }"/>
     邮箱：<input id="manager.email" type="text" name="manager.email" value="${manager.email }"/>
     <input id="btnOK" type="submit" value="查询"/>
 </div>

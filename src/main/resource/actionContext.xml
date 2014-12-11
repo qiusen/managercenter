@@ -11,6 +11,15 @@
 	<bean id="userInfo" class="com.dihaitech.managercenter.controller.action.common.UserAction"
 		scope="prototype">
 	</bean>
+	<!-- 管理员详细信息 action -->
+	  <bean id="managerInfoAction" class="com.dihaitech.managercenter.controller.action.managerInfo.ManagerInfoAction" scope="prototype">
+			<property name="managerInfoService">
+				<ref bean="managerInfoService" />
+			</property>
+			<property name="roleService">
+				<ref bean="roleService" />
+			</property>
+	  </bean>
 
 
 

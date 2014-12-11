@@ -17,6 +17,9 @@
 	        <if test ="nickname != null and nickname != ''">
 			    and `NICKNAME` like '%${nickname}%'
 		    </if>
+		    <if test ="ename != null and ename != ''">
+			    and `ENAME` like '%${ename}%'
+		    </if>
             <if test ="status != null and status > -1">
 				and `STATUS` = #{status}
 			</if>
@@ -39,7 +42,7 @@
 	</sql>
 	
 	<sql id="managerField">
-		`ID`, `PASSWORD`, `EMAIL`, `NICKNAME`, `STATUS`, `ROLE_ID`, `CREATOR`, `CREATETIME`, `LOGINTIME`, `LOGINIP`
+		`ID`, `PASSWORD`, `EMAIL`, `NICKNAME`, `ENAME`, `STATUS`, `ROLE_ID`, `CREATOR`, `CREATETIME`, `LOGINTIME`, `LOGINIP`
 	</sql>
 	
 	<resultMap id="managerMap" type="manager">
@@ -47,6 +50,7 @@
 	    	<result property="password" column="PASSWORD" javaType="java.lang.String" jdbcType="VARCHAR" />
 	    	<result property="email" column="EMAIL" javaType="java.lang.String" jdbcType="VARCHAR" />
 	    	<result property="nickname" column="NICKNAME" javaType="java.lang.String" jdbcType="VARCHAR" />
+	    	<result property="ename" column="ENAME" javaType="java.lang.String" jdbcType="VARCHAR" />
 	    	<result property="status" column="STATUS" javaType="java.lang.Integer" jdbcType="INTEGER" />
 	    	<result property="roleId" column="ROLE_ID" javaType="java.lang.Integer" jdbcType="INTEGER" />
 	    	<result property="creator" column="CREATOR" javaType="java.lang.String" jdbcType="VARCHAR" />
@@ -60,6 +64,7 @@
            `PASSWORD`, 
            `EMAIL`, 
            `NICKNAME`, 
+           `ENAME`, 
            `STATUS`, 
            `ROLE_ID`, 
            `CREATOR`, 
@@ -71,6 +76,7 @@
             #{password}, 
             #{email}, 
             #{nickname}, 
+            #{ename}, 
             #{status}, 
             #{roleId}, 
             #{creator}, 
@@ -92,6 +98,7 @@
               `PASSWORD` = #{password}, 
               `EMAIL` = #{email}, 
               `NICKNAME` = #{nickname}, 
+              `ENAME` = #{ename}, 
               `STATUS` = #{status}, 
               `ROLE_ID` = #{roleId}, 
               `LOGINTIME` = #{logintime}, 

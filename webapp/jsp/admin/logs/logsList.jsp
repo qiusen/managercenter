@@ -24,8 +24,8 @@ function f_initGrid(){
         columns: [
         //{ display: '主键', name: 'id', width: 50, type: 'int', frozen: true },
 		
-		{ display: '用户名', name: 'username',type: 'text' , width: '15%'},
-		{ display: '昵称', name: 'nickname',type: 'text' , width: '15%'},
+		{ display: '姓名', name: 'nickname',type: 'text' , width: '15%'},
+		{ display: '邮箱', name: 'email',type: 'text' , width: '15%'},
 		{ display: 'IP', name: 'ip',type: 'text' , width: '15%'},
 		{ display: '操作标识', name: 'act',type: 'text' , width: '15%'},
 		{ display: '操作时间', name: 'opttime',type: 'text' , width: '25%'},
@@ -176,7 +176,7 @@ function itemclick(item){
 <input type="hidden" name="pageNo" id="pageNo" value="${requestScope.pageInfo.page}" />
 <input type="hidden" name="pageSize" id="pageSize" value="${requestScope.pageInfo.pageSize}" />
 <div id="searchbar">
-用户名：<input id="logs.username" type="text" name="logs.username" value="${logs.username }"/>
+邮箱：<input id="logs.email" type="text" name="logs.email" value="${logs.email }"/>
     <input id="btnOK" type="submit" value="查询"/>
 </div>
     <div id="maingrid" style="margin:0; padding:0"></div>
