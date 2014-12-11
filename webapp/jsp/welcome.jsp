@@ -5,7 +5,9 @@
 <title></title>
 </head>
 <body>
-		<center><h1>欢迎使用<%=Property.SYSTEM_NAME %></h1></center>
+	<h2><font color="blue">${sessionScope.manager.nickname } ${sessionScope.manager.ename } 你好</font></h2>
+		<center><h1><font color="blue">
+		<br/>欢迎使用<%=Property.SYSTEM_NAME %></font></h1></center>
 		<ul>
 		<li>1、基础框架</li>
 		<li>2、模块灵活配置</li>

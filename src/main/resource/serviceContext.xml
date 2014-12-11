@@ -33,4 +33,7 @@
 	  
 	  <!-- 管理员详细信息 service -->	
 	  <bean id="managerInfoService" class="com.dihaitech.managercenter.service.impl.ManagerInfoServiceImpl"/>
+	  
+	  <!-- 部门 service -->	
+	  <bean id="departmentService" class="com.dihaitech.managercenter.service.impl.DepartmentServiceImpl"/>
 </beans>

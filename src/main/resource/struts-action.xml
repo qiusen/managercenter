@@ -292,5 +292,31 @@
     </package> 
     <!-- 字典Action End -->
     
+    <!-- 部门Action Begin -->
+    <package name="struts-admin-department" namespace="/admin/department" extends="struts-interceptor">
+		<action name="departmentAction" class="departmentAction">
+			<result name="success" type="dispatcher">/jsp/admin/department/departmentList.jsp</result>
+			<result name="add" type="dispatcher">/jsp/admin/department/departmentAdd.jsp</result>
+			<result name="addSave" type="redirectAction">
+				<param name="actionName">departmentAction</param>
+				<param name="namespace">/admin/department</param>
+			</result>
+
+			<result name="edit" type="dispatcher">/jsp/admin/department/departmentEdit.jsp</result>
+			<result name="editSave" type="redirectAction">
+				<param name="actionName">departmentAction</param>
+				<param name="namespace">/admin/department</param>
+			</result>
+			
+			<result name="deleteSuccess" type="redirectAction">
+				<param name="actionName">departmentAction</param>
+				<param name="namespace">/admin/department</param>
+			</result>
+			
+			<interceptor-ref name="common-params"/>
+        </action>
+    </package> 
+    <!-- 部门Action End -->
+    
     
 </struts>

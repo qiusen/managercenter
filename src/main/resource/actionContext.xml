@@ -20,6 +20,13 @@
 				<ref bean="roleService" />
 			</property>
 	  </bean>
+	  
+	  <!-- 部门 action -->
+	  <bean id="departmentAction" class="com.dihaitech.managercenter.controller.action.department.DepartmentAction" scope="prototype">
+			<property name="departmentService">
+				<ref bean="departmentService" />
+			</property>
+	  </bean>
 
 
 

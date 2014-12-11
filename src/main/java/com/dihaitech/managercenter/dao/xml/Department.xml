@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dihaitech.managercenter.dao.IDepartmentDAO">
+	
+	<cache flushInterval="600000" eviction="LRU" type="org.mybatis.caches.oscache.OSCache"/>
+	
+	<sql id="departmentLikeWhere">
+		<where>
+            <if test ="id != null and id > -1">
+				and `ID` = #{id}
+			</if>
+	        <if test ="name != null and name != ''">
+			    and `NAME` like '%${name}%'
+		    </if>
+	        <if test ="code != null and code != ''">
+			    and `CODE` like '%${code}%'
+		    </if>
+            <if test ="type != null and type > -1">
+				and `TYPE` = #{type}
+			</if>
+            <if test ="superId != null and superId > -1">
+				and `SUPER_ID` = #{superId}
+			</if>
+	        <if test ="creator != null and creator != ''">
+			    and `CREATOR` like '%${creator}%'
+		    </if>
+	        <if test ="updator != null and updator != ''">
+			    and `UPDATOR` like '%${updator}%'
+		    </if>
+		</where>
+	</sql>
+	
+	<sql id="departmentPage">
+		<if test="null != start">
+		  limit #{start},#{pageSize}
+		</if>
+	</sql>
+	
+	<sql id="departmentField">
+		`ID`, `NAME`, `CODE`, `TYPE`, `SUPER_ID`, `CREATOR`, `CREATETIME`, `UPDATOR`, `UPDATETIME`
+	</sql>
+	
+	<resultMap id="departmentMap" type="department">
+	    	<result property="id" column="ID" javaType="java.lang.Integer" jdbcType="INTEGER" />
+	    	<result property="name" column="NAME" javaType="java.lang.String" jdbcType="VARCHAR" />
+	    	<result property="code" column="CODE" javaType="java.lang.String" jdbcType="VARCHAR" />
+	    	<result property="type" column="TYPE" javaType="java.lang.Integer" jdbcType="INTEGER" />
+	    	<result property="superId" column="SUPER_ID" javaType="java.lang.Integer" jdbcType="INTEGER" />
+	    	<result property="creator" column="CREATOR" javaType="java.lang.String" jdbcType="VARCHAR" />
+	    	<result property="createtime" column="CREATETIME" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+	    	<result property="updator" column="UPDATOR" javaType="java.lang.String" jdbcType="VARCHAR" />
+	    	<result property="updatetime" column="UPDATETIME" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+	</resultMap>
+	
+	<insert id="addSaveDepartment" parameterType="department">
+		insert into `department` (
+           `NAME`, 
+           `CODE`, 
+           `TYPE`, 
+           `SUPER_ID`, 
+           `CREATOR`, 
+           `CREATETIME`, 
+           `UPDATOR`, 
+           `UPDATETIME`
+		) values 
+		(
+            #{name}, 
+            #{code}, 
+            #{type}, 
+            #{superId}, 
+            #{creator}, 
+            #{createtime}, 
+            #{updator}, 
+            #{updatetime}
+		)
+		<selectKey keyProperty="id"  resultType="java.lang.Integer">
+			select last_insert_id() as id from `department` limit 1
+		</selectKey>
+	</insert>
+	
+	<delete id="deleteByIds" parameterType="String">
+		delete from `department` ${_parameter}
+	</delete>
+	
+	<update id="editSaveDepartment" parameterType="department">
+		update `department` set 
+              `NAME` = #{name}, 
+              `CODE` = #{code}, 
+              `TYPE` = #{type}, 
+              `SUPER_ID` = #{superId}, 
+              `UPDATOR` = #{updator}, 
+              `UPDATETIME` = #{updatetime}
+        	where ID = #{id}
+	</update>
+	
+	<select id="selectDepartmentById" parameterType="department" resultMap="departmentMap"  >
+		SELECT * FROM `department` where ID = #{id}
+	</select>
+	
+	<select id="getDepartmentCount" parameterType="department" resultType="Long" >
+		select count(*) from `department`
+		<include refid="departmentLikeWhere" />
+	</select>
+	
+	<select id="selectAll" parameterType="department" resultMap="departmentMap" >
+		select * from `department`
+	</select>
+	
+	<select id="selectDepartmentLike" parameterType="department" resultMap="departmentMap" >
+		SELECT <include refid="departmentField" /> FROM `department`
+	        <include refid="departmentLikeWhere" />
+			order by ID desc
+	        <include refid="departmentPage" /> 
+	</select>
+</mapper>

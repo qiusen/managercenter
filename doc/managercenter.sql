@@ -33,13 +33,29 @@ CREATE TABLE `MANAGER_INFO` (
   `SEX` int(2) NOT NULL COMMENT '性别：0、保密；1、男；2、女',
   `ADDRESS` varchar(255) NOT NULL COMMENT '联系地址',
   `QQ` varchar(255) NOT NULL COMMENT 'QQ',
+  `UPDATETIME` datetime default '2000-01-01 00:00:00' COMMENT '修改时间',
+  PRIMARY KEY  (`id`),
+  index(EMAIL)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='管理员详细信息';
+
+DROP TABLE IF EXISTS DEPARTMENT CASCADE;
+CREATE TABLE `DEPARTMENT` (
+  `ID` int(11) NOT NULL auto_increment,
+  `NAME` varchar(255) NOT NULL COMMENT '名称',
+  `CODE`  varchar(255) NOT NULL COMMENT '代号',
+  `TYPE` int(2) NOT NULL COMMENT '类型：1、公司；2、部门；3、项目组',
+  `SUPER_ID` int(11) NOT NULL COMMENT '上级部门ID',
   `CREATOR` varchar(255) NOT NULL COMMENT '创建人',
   `CREATETIME` datetime default '0000-00-00 00:00:00' COMMENT '创建时间',
   `UPDATOR` varchar(255) default NULL COMMENT '修改人',
   `UPDATETIME` datetime default '2000-01-01 00:00:00' COMMENT '修改时间',
   PRIMARY KEY  (`id`),
-  index(EMAIL)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='管理员详细信息';
+  index(CODE)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='部门';
+
+
+
+
 
 
 DROP TABLE IF EXISTS ROLE CASCADE;
@@ -101,10 +117,12 @@ CREATE TABLE `MODULE` (
 
 insert into MODULE(`MODULENAME`,`MODULEURL`,`MODULEACT`,`CATALOG_ID`,`STATUS`,`CREATETIME`)values('管理员管理','/admin/manager','managerAction',2,1,'2012-08-08 08:08:08');
 insert into MODULE(`MODULENAME`,`MODULEURL`,`MODULEACT`,`CATALOG_ID`,`STATUS`,`CREATETIME`)values('角色管理','/admin/role','roleAction',2,1,'2012-08-01 08:08:08');
+insert into MODULE(`MODULENAME`,`MODULEURL`,`MODULEACT`,`CATALOG_ID`,`STATUS`,`CREATETIME`)values('部门管理','/admin/department','departmentAction',2,1,'2012-08-01 08:08:08');
 insert into MODULE(`MODULENAME`,`MODULEURL`,`MODULEACT`,`CATALOG_ID`,`STATUS`,`CREATETIME`)values('菜单管理','/admin/menu','menuAction',3,1,'2012-08-01 08:08:08');
 insert into MODULE(`MODULENAME`,`MODULEURL`,`MODULEACT`,`CATALOG_ID`,`STATUS`,`CREATETIME`)values('目录管理','/admin/catalog','catalogAction',3,1,'2012-08-08 08:08:08');
 insert into MODULE(`MODULENAME`,`MODULEURL`,`MODULEACT`,`CATALOG_ID`,`STATUS`,`CREATETIME`)values('模块管理','/admin/module','moduleAction',3,1,'2012-08-08 08:08:08');
 insert into MODULE(`MODULENAME`,`MODULEURL`,`MODULEACT`,`CATALOG_ID`,`STATUS`,`CREATETIME`)values('日志管理','/admin/logs','logsAction',1,1,'2012-08-01 08:08:08');
+
 insert into MODULE(`MODULENAME`,`MODULEURL`,`MODULEACT`,`CATALOG_ID`,`STATUS`,`CREATETIME`)values('用户管理','/admin/puser','puserAction',4,1,'2012-08-01 08:08:08');
 insert into MODULE(`MODULENAME`,`MODULEURL`,`MODULEACT`,`CATALOG_ID`,`STATUS`,`CREATETIME`)values('会员管理','/admin/member','memberAction',4,1,'2012-08-01 08:08:08');
 
