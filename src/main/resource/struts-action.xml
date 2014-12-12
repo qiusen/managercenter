@@ -308,6 +308,18 @@
 				<param name="namespace">/admin/department</param>
 			</result>
 			
+			<result name="editPosition" type="dispatcher">/jsp/admin/department/editPosition.jsp</result>
+			<result name="editSavePosition" type="redirectAction">
+				<param name="actionName">departmentAction</param>
+				<param name="namespace">/admin/department</param>
+			</result>
+			
+			<result name="editLeader" type="dispatcher">/jsp/admin/department/editLeader.jsp</result>
+			<result name="editSaveLeader" type="redirectAction">
+				<param name="actionName">departmentAction</param>
+				<param name="namespace">/admin/department</param>
+			</result>
+			
 			<result name="deleteSuccess" type="redirectAction">
 				<param name="actionName">departmentAction</param>
 				<param name="namespace">/admin/department</param>

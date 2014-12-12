@@ -9,9 +9,13 @@ import org.apache.log4j.MDC;
 
 import com.dihaitech.managercenter.common.Property;
 import com.dihaitech.managercenter.controller.action.BaseAction;
+import com.dihaitech.managercenter.model.Department;
 import com.dihaitech.managercenter.model.Manager;
+import com.dihaitech.managercenter.model.Position;
 import com.dihaitech.managercenter.model.Role;
+import com.dihaitech.managercenter.service.IDepartmentService;
 import com.dihaitech.managercenter.service.IManagerService;
+import com.dihaitech.managercenter.service.IPositionService;
 import com.dihaitech.managercenter.service.IRoleService;
 import com.dihaitech.managercenter.util.MD5Util;
 import com.dihaitech.managercenter.util.Page;
@@ -31,7 +35,11 @@ public class ManagerAction extends BaseAction {
 	private Manager manager = new Manager();
 	private IManagerService managerService;
 	
+	private IDepartmentService departmentService;
+	
 	private IRoleService roleService;
+	
+	private IPositionService positionService;
 	
 	public Manager getManager() {
 		return manager;
@@ -54,6 +62,23 @@ public class ManagerAction extends BaseAction {
 
 	public void setRoleService(IRoleService roleService) {
 		this.roleService = roleService;
+	}
+	
+
+	public IDepartmentService getDepartmentService() {
+		return departmentService;
+	}
+
+	public void setDepartmentService(IDepartmentService departmentService) {
+		this.departmentService = departmentService;
+	}
+	
+	public IPositionService getPositionService() {
+		return positionService;
+	}
+
+	public void setPositionService(IPositionService positionService) {
+		this.positionService = positionService;
 	}
 
 	/* 
@@ -111,6 +136,33 @@ public class ManagerAction extends BaseAction {
 			System.out.println("Manager json:::::::::::::::::::" + json);
 			this.getRequest().setAttribute("json", json);
 			
+			if(resultList!=null && resultList.size()>0){
+				StringBuffer depstrbuf = new StringBuffer();
+				StringBuffer posstrbuf = new StringBuffer();
+				Manager managerTemp = null;
+				for(int i=0;i<resultList.size();i++){
+					managerTemp =resultList.get(i);
+					if(i==0){
+						depstrbuf.append(managerTemp.getDepartmentId());
+						posstrbuf.append(managerTemp.getPositionId());
+					}else{
+						depstrbuf.append(","+managerTemp.getDepartmentId());
+						posstrbuf.append(","+managerTemp.getPositionId());
+					}
+					
+				}
+				Department department = new Department();
+				department.setIdStr(depstrbuf.toString());
+				List<Department> departmentList = departmentService.selectDepartmentByIds(department);
+				this.getRequest().setAttribute("departmentList", departmentList);
+				
+				Position position = new Position();
+				position.setIdStr(posstrbuf.toString());
+				List<Position> positionList = positionService.selectPositionByIds(position);
+				this.getRequest().setAttribute("positionList", positionList);
+				
+			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -122,6 +174,22 @@ public class ManagerAction extends BaseAction {
 	 * @return
 	 */
 	public String add(){
+		
+		//部门
+		List<Department> departmentList = departmentService.selectAll();
+		StringBuffer strbuf = new StringBuffer("[");
+		
+		strbuf.append("{ id: '0', pid: -1, text: '"+Property.COMP_NAME+"' , type:0 }");
+		if(departmentList!=null && departmentList.size()>0){
+			for(Department department : departmentList){
+				strbuf.append(",{id:"+department.getId()+", pid:"+department.getSuperId()+", text:'"+department.getName()+"', type:1}");
+			}
+		}
+		strbuf.append("]");
+		
+		this.getRequest().setAttribute("data", strbuf.toString());
+		
+		//角色
 		Role role = new Role();
 		role.setStatus(1);
 		List<Role> roleList = roleService.selectAllByStatus(role);
@@ -172,6 +240,28 @@ public class ManagerAction extends BaseAction {
 		
 		Manager managerVO = managerService.selectManagerById(manager);
 		this.getRequest().setAttribute("manager", managerVO);
+		
+		//部门
+		List<Department> departmentList = departmentService.selectAll();
+		StringBuffer strbuf = new StringBuffer("[");
+		
+		strbuf.append("{ id: '0', pid: -1, text: '"+Property.COMP_NAME+"' ");
+		if(0==managerVO.getDepartmentId()){
+			strbuf.append(", ischecked:true");
+		}
+		strbuf.append(", type:0 }");
+		if(departmentList!=null && departmentList.size()>0){
+			for(Department department : departmentList){
+				strbuf.append(",{id:"+department.getId()+", pid:"+department.getSuperId()+", text:'"+department.getName()+"'");
+				if(department.getId().intValue()==managerVO.getDepartmentId().intValue()){
+					strbuf.append(", ischecked:true");
+				}
+				strbuf.append(", type:1}");
+			}
+		}
+		strbuf.append("]");
+		
+		this.getRequest().setAttribute("data", strbuf.toString());
 		
 		Role role = new Role();
 		role.setStatus(1);

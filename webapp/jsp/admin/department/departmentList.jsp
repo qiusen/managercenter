@@ -38,8 +38,17 @@ function f_initGrid(){
             }
             return h;
         } },
-		{ display: '上级部门', name: 'superId',type: 'text' , width: '15%',render: function (rowdata, rowindex, value) {
+        { display: '主管', name: 'leaderEmail',type: 'text' , width: '25%',render: function (rowdata, rowindex, value) {
         	var r = "-";
+        	<c:forEach items="${managerList}" var="manager">
+        	if(rowdata.leaderEmail == '${manager.email}'){
+        		r = "${manager.nickname}|${manager.ename}|${manager.email}";
+        	}
+        	</c:forEach>
+            return r;
+        }  },
+		{ display: '上级部门', name: 'superId',type: 'text' , width: '15%',render: function (rowdata, rowindex, value) {
+        	var r = "<%=Property.COMP_NAME%>";
         	<c:forEach items="${departmentList}" var="department">
         	if(rowdata.superId == ${department.id}){
         		r = "${department.name}";
@@ -98,8 +107,9 @@ function f_initGrid(){
         //isScroll: false, 
         
         toolbar: { items: [{ text: '增加', value:'add', click: itemclick, icon: 'add', img: '${base}/ligerUI/skins/icons/add.gif' },
-                           { text: '修改', value:'edit', click: itemclick, icon: 'edit', img: '${base}/ligerUI/skins/icons/edit.gif' }//,
-                           //{ text: '删除', value:'delete', click: itemclick, icon: 'delete', img: '${base}/ligerUI/skins/icons/delete.gif' } 
+                           { text: '修改', value:'edit', click: itemclick, icon: 'edit', img: '${base}/ligerUI/skins/icons/edit.gif' },
+                           { text: '主管', value:'leader', click: itemclick, icon: 'leader', img: '${base}/ligerUI/skins/icons/memeber.gif' },
+                           { text: '职位', value:'position', click: itemclick, icon: 'position', img: '${base}/ligerUI/skins/icons/customers.gif' } 
                            ] }
 
         
@@ -174,6 +184,19 @@ function itemclick(item){
             //alert(row.id);
 		window.location="${base}/admin/department/departmentAction!edit.${actionExt}?id=" + row.id;
 	}
+	if(item.value=='leader'){
+        var row = manager.getSelectedRow();
+        if (!row) { $.ligerDialog.warn('请选择行'); return; }
+            //alert(row.id);
+		window.location="${base}/admin/department/departmentAction!editLeader.${actionExt}?id=" + row.id;
+	}
+	if(item.value=='position'){
+        var row = manager.getSelectedRow();
+        if (!row) { $.ligerDialog.warn('请选择行'); return; }
+            //alert(row.id);
+		window.location="${base}/admin/department/departmentAction!editPosition.${actionExt}?id=" + row.id;
+	}
+	
 	if(item.value=='delete'){
 		var row = manager.getSelectedRow();
         if (!row) {$.ligerDialog.warn('请选择行'); return; }

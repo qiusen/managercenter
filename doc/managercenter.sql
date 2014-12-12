@@ -12,6 +12,8 @@ CREATE TABLE `MANAGER` (
   `ENAME` varchar(255) NOT NULL COMMENT '英文名',
   `LOGO` varchar(255) default '' COMMENT 'LOGO',
   `STATUS` int(2) NOT NULL COMMENT '状态',
+  `DEPARTMENT_ID` int(11) default 0 COMMENT '部门ID',
+  `POSITION_ID` int(11) default 0 COMMENT '职位ID',
   `ROLE_ID` int(11) NOT NULL COMMENT '角色ID',
   `CREATOR` varchar(255) NOT NULL COMMENT '创建人',
   `CREATETIME` datetime default '0000-00-00 00:00:00' COMMENT '创建时间',
@@ -21,8 +23,8 @@ CREATE TABLE `MANAGER` (
   index(EMAIL)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='管理员';
 
-insert into MANAGER(`EMAIL`,`PASSWORD`,`NICKNAME`,`ENAME`,`LOGO`,`STATUS`,`ROLE_ID`,`CREATOR`,`CREATETIME`,`LOGINTIME`,`LOGINIP`) 
-values('qiu_sen@126.com','21232f297a57a5a743894a0e4a801fc3','邱森','Nathan','',1,1,'qiu_sen@126.com','2012-08-01 08:08:08','2012-08-01 08:08:08','127.0.0.1');
+insert into MANAGER(`EMAIL`,`PASSWORD`,`NICKNAME`,`ENAME`,`LOGO`,`STATUS`,`DEPARTMENT_ID`,`POSITION_ID`,`ROLE_ID`,`CREATOR`,`CREATETIME`,`LOGINTIME`,`LOGINIP`) 
+values('qiu_sen@126.com','21232f297a57a5a743894a0e4a801fc3','邱森','Nathan','',1,0,0,1,'qiu_sen@126.com','2012-08-01 08:08:08','2012-08-01 08:08:08','127.0.0.1');
 
 
 DROP TABLE IF EXISTS MANAGER_INFO CASCADE;
@@ -45,6 +47,7 @@ CREATE TABLE `DEPARTMENT` (
   `NAME` varchar(255) NOT NULL COMMENT '名称',
   `CODE`  varchar(255) NOT NULL COMMENT '代号',
   `TYPE` int(2) NOT NULL COMMENT '类型：1、公司；2、部门；3、项目组',
+  `LEADER_EMAIL` varchar(255) default NULL COMMENT '主管EMAIL',
   `SUPER_ID` int(11) NOT NULL COMMENT '上级部门ID',
   `CREATOR` varchar(255) NOT NULL COMMENT '创建人',
   `CREATETIME` datetime default '0000-00-00 00:00:00' COMMENT '创建时间',
@@ -68,6 +71,19 @@ CREATE TABLE `POSITION` (
   index(CODE)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='职位';
 
+
+DROP TABLE IF EXISTS DEP_POS CASCADE;
+CREATE TABLE `DEP_POS` (
+  `ID` int(11) NOT NULL auto_increment,
+  `DEPARTMENT_ID` int(11) default 0 COMMENT '部门ID',
+  `POSITION_ID` int(11) default 0 COMMENT '职位ID',
+  `CREATOR` varchar(255) NOT NULL COMMENT '创建人',
+  `CREATETIME` datetime default '0000-00-00 00:00:00' COMMENT '创建时间',
+  `UPDATOR` varchar(255) default NULL COMMENT '修改人',
+  `UPDATETIME` datetime default '2000-01-01 00:00:00' COMMENT '修改时间',
+  PRIMARY KEY  (`id`),
+  index(DEPARTMENT_ID)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='部门职位';
 
 
 DROP TABLE IF EXISTS ROLE CASCADE;

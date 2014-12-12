@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dihaitech.managercenter.dao.IDepPosDAO">
+	
+	<cache flushInterval="600000" eviction="LRU" type="org.mybatis.caches.oscache.OSCache"/>
+	
+	<sql id="depPosLikeWhere">
+		<where>
+            <if test ="id != null and id > -1">
+				and `ID` = #{id}
+			</if>
+            <if test ="departmentId != null and departmentId > -1">
+				and `DEPARTMENT_ID` = #{departmentId}
+			</if>
+            <if test ="positionId != null and positionId > -1">
+				and `POSITION_ID` = #{positionId}
+			</if>
+	        <if test ="creator != null and creator != ''">
+			    and `CREATOR` like '%${creator}%'
+		    </if>
+	        <if test ="updator != null and updator != ''">
+			    and `UPDATOR` like '%${updator}%'
+		    </if>
+		</where>
+	</sql>
+	
+	<sql id="depPosPage">
+		<if test="null != start">
+		  limit #{start},#{pageSize}
+		</if>
+	</sql>
+	
+	<sql id="depPosField">
+		`ID`, `DEPARTMENT_ID`, `POSITION_ID`, `CREATOR`, `CREATETIME`, `UPDATOR`, `UPDATETIME`
+	</sql>
+	
+	<resultMap id="depPosMap" type="depPos">
+	    	<result property="id" column="ID" javaType="java.lang.Integer" jdbcType="INTEGER" />
+	    	<result property="departmentId" column="DEPARTMENT_ID" javaType="java.lang.Integer" jdbcType="INTEGER" />
+	    	<result property="positionId" column="POSITION_ID" javaType="java.lang.Integer" jdbcType="INTEGER" />
+	    	<result property="creator" column="CREATOR" javaType="java.lang.String" jdbcType="VARCHAR" />
+	    	<result property="createtime" column="CREATETIME" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+	    	<result property="updator" column="UPDATOR" javaType="java.lang.String" jdbcType="VARCHAR" />
+	    	<result property="updatetime" column="UPDATETIME" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+	</resultMap>
+	
+	<insert id="addSaveDepPos" parameterType="depPos">
+		insert into `dep_pos` (
+           `DEPARTMENT_ID`, 
+           `POSITION_ID`, 
+           `CREATOR`, 
+           `CREATETIME`, 
+           `UPDATOR`, 
+           `UPDATETIME`
+		) values 
+		(
+            #{departmentId}, 
+            #{positionId}, 
+            #{creator}, 
+            #{createtime}, 
+            #{updator}, 
+            #{updatetime}
+		)
+		<selectKey keyProperty="id"  resultType="java.lang.Integer">
+			select last_insert_id() as id from `dep_pos` limit 1
+		</selectKey>
+	</insert>
+	
+	<delete id="deleteByIds" parameterType="String">
+		delete from `dep_pos` ${_parameter}
+	</delete>
+	
+	<update id="editSaveDepPos" parameterType="depPos">
+		update `dep_pos` set 
+              `DEPARTMENT_ID` = #{departmentId}, 
+              `POSITION_ID` = #{positionId}, 
+              `CREATOR` = #{creator}, 
+              `CREATETIME` = #{createtime}, 
+              `UPDATOR` = #{updator}, 
+              `UPDATETIME` = #{updatetime}
+        	where ID = #{id}
+	</update>
+	
+	<select id="selectDepPosById" parameterType="depPos" resultMap="depPosMap"  >
+		SELECT * FROM `dep_pos` where ID = #{id}
+	</select>
+	
+	<select id="getDepPosCount" parameterType="depPos" resultType="Long" >
+		select count(*) from `dep_pos`
+		<include refid="depPosLikeWhere" />
+	</select>
+	
+	<select id="selectAll" parameterType="depPos" resultMap="depPosMap" >
+		select * from `dep_pos` order by ID
+	</select>
+	
+	<select id="selectDepPosLike" parameterType="depPos" resultMap="depPosMap" >
+		SELECT <include refid="depPosField" /> FROM `dep_pos`
+	        <include refid="depPosLikeWhere" />
+			order by ID desc
+	        <include refid="depPosPage" /> 
+	</select>
+	
+	<select id="selectDepPosByDepId" parameterType="depPos" resultMap="depPosMap" >
+		SELECT <include refid="depPosField" /> FROM `dep_pos`
+	        where `DEPARTMENT_ID` = #{departmentId}
+			order by ID  
+	</select>
+	
+	<delete id="deleteByDepId" parameterType="depPos">
+		delete from `dep_pos` 
+		where `DEPARTMENT_ID` = #{departmentId}
+	</delete>
+</mapper>

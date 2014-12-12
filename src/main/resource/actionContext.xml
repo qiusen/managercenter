@@ -19,6 +19,15 @@
 			<property name="roleService">
 				<ref bean="roleService" />
 			</property>
+			<property name="departmentService">
+				<ref bean="departmentService" />
+			</property>
+			<property name="positionService">
+				<ref bean="positionService" />
+			</property>
+			<property name="depPosService">
+				<ref bean="depPosService" />
+			</property>
 	  </bean>
 	  
 	  <!-- 部门 action -->

@@ -28,6 +28,11 @@ public class Department extends BaseModel{
 	private Integer type;
 	
 	/**
+	 * 主管EMAIL
+	 */
+	private String leaderEmail;
+	
+	/**
 	 * 上级部门ID
 	 */
 	private Integer superId;
@@ -99,4 +104,11 @@ public class Department extends BaseModel{
 	public void setUpdatetime(Date updatetime) {
 		this.updatetime = updatetime;
 	}
+	public String getLeaderEmail() {
+		return leaderEmail;
+	}
+	public void setLeaderEmail(String leaderEmail) {
+		this.leaderEmail = leaderEmail;
+	}
+	
 }

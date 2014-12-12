@@ -9,4 +9,9 @@
 		<property name="cityService" ref="cityService"></property>
 	</bean>
 	
+	<bean id="positionAjax" class="com.dihaitech.managercenter.dwr.PositionAjax" >
+		<property name="depPosService" ref="depPosService"></property>
+		<property name="positionService" ref="positionService"></property>
+	</bean>
+	
 </beans>

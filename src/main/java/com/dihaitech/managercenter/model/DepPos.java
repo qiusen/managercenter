@@ -3,24 +3,24 @@ package com.dihaitech.managercenter.model;
 import java.util.Date;
 
 /**
- * 职位
+ * 部门职位
  * 
  * @author cg
  *
- * @date 2014-12-11
+ * @date 2014-12-12
  */
 @SuppressWarnings("serial")
-public class Position extends BaseModel{
+public class DepPos extends BaseModel{
 	
 	/**
-	 * 名称
+	 * 部门ID
 	 */
-	private String name;
+	private Integer departmentId;
 	
 	/**
-	 * 代号
+	 * 职位ID
 	 */
-	private String code;
+	private Integer positionId;
 	
 	/**
 	 * 创建人
@@ -41,22 +41,17 @@ public class Position extends BaseModel{
 	 * 修改时间
 	 */
 	private Date updatetime;
-	
-	/**
-	 * 是否选中
-	 */
-	private Integer isChecked = 0;
-	public String getName() {
-		return name;
+	public Integer getDepartmentId() {
+		return departmentId;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setDepartmentId(Integer departmentId) {
+		this.departmentId = departmentId;
 	}
-	public String getCode() {
-		return code;
+	public Integer getPositionId() {
+		return positionId;
 	}
-	public void setCode(String code) {
-		this.code = code;
+	public void setPositionId(Integer positionId) {
+		this.positionId = positionId;
 	}
 	public String getCreator() {
 		return creator;
@@ -82,11 +77,4 @@ public class Position extends BaseModel{
 	public void setUpdatetime(Date updatetime) {
 		this.updatetime = updatetime;
 	}
-	public Integer getIsChecked() {
-		return isChecked;
-	}
-	public void setIsChecked(Integer isChecked) {
-		this.isChecked = isChecked;
-	}
-	
 }

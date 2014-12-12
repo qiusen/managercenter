@@ -6,6 +6,9 @@
 <title>管理员 添加</title>
 <%@ include file="/jsp/common/meta.jsp"%>
 <script charset="utf-8" src="${base}/js/jquery.upload.js" type="text/javascript" ></script>
+<script type='text/javascript'
+	src='<%=Property.BASE %>/dwr/interface/positionDwr.js'></script>
+<script type='text/javascript' src='<%=Property.BASE %>/dwr/engine.js'></script>
 <script language="javascript">
 function checkForm(){
 	
@@ -68,6 +71,49 @@ function doUpload(element) {
 			}
 	});
 }
+
+var data = ${requestScope.data};
+
+var treeManager = null;
+
+//调用初始化页面方法
+$(document).ready(function(){
+	init();
+});
+//初始化方法
+function init(){
+    var tree = $("#tree1").ligerTree({  
+    checkbox: true,
+    single:true,
+    data:data, 
+     idFieldName :'id',
+     slide : false,
+     parentIDFieldName :'pid',
+     onCheck: function (node, e){ 
+     	chengePosition(node.data.id);
+     	document.getElementById("manager.departmentId").value=node.data.id;
+        return true;
+     }
+     });
+
+     treeManager = $("#tree1").ligerGetTreeManager();
+     
+     treeManager.expandAll();
+    
+}
+function chengePosition(depId){
+	//alert(depId);
+	positionDwr.getPositionByDepId(depId, changePositionCallBack);
+}
+function changePositionCallBack(positionList){
+	var mp= document.getElementById("manager.positionId");
+	clearSelect(mp);	//清空
+	if(positionList!= null && positionList.length>0){
+		for(var i=0;i<positionList.length;i++){
+			mp.options[i] = new Option(positionList[i].name, positionList[i].id);
+		}
+	}
+}
 </script>
 <style type="text/css">
     body{ font-size:12px;}
@@ -80,6 +126,7 @@ function doUpload(element) {
 <body>
 <form name="managerForm" id="managerForm" method="post" action="managerAction!addSave.${actionExt}" onsubmit="return checkForm();">
 <input type="hidden" name="manager.logo" id="manager.logo"/>
+<input type="hidden" name="manager.departmentId" id="manager.departmentId" />
 <table cellpadding="0" cellspacing="0" class="l-table-edit" style="margin-top:50px;margin-left:50px;">
 	<tr>
     	<td align="right" class="l-table-edit-td">LOGO：</td>
@@ -90,30 +137,38 @@ function doUpload(element) {
     </tr>
     <tr>
         <td align="right" class="l-table-edit-td">邮箱：</td>
-        <td align="left" class="l-table-edit-td"><input name="manager.email" type="text" id="manager.email" ltype="text" /></td>
-        <td align="left"><font color="red">*</font></td>
+        <td align="left" class="l-table-edit-td"><input name="manager.email" type="text" id="manager.email" ltype="text" /> <font color="red">*</font></td>
+        <td align="left"></td>
     </tr>
     <tr>
         <td align="right" class="l-table-edit-td">密码：</td>
-        <td align="left" class="l-table-edit-td"><input name="manager.password" type="password" id="manager.password" ltype="text" /></td>
-        <td align="left"><font color="red">*</font></td>
+        <td align="left" class="l-table-edit-td"><input name="manager.password" type="password" id="manager.password" ltype="text" /> <font color="red">*</font></td>
+        <td align="left"></td>
     </tr>
     <tr>
         <td align="right" class="l-table-edit-td">姓名：</td>
-        <td align="left" class="l-table-edit-td"><input name="manager.nickname" type="text" id="manager.nickname" ltype="text" /></td>
-        <td align="left"><font color="red">*</font></td>
+        <td align="left" class="l-table-edit-td"><input name="manager.nickname" type="text" id="manager.nickname" ltype="text" /> <font color="red">*</font></td>
+        <td align="left"></td>
     </tr>
     <tr>
         <td align="right" class="l-table-edit-td">英文名：</td>
-        <td align="left" class="l-table-edit-td"><input name="manager.ename" type="text" id="manager.ename" ltype="text" maxlength="15"/></td>
-        <td align="left"><font color="red">*</font></td>
+        <td align="left" class="l-table-edit-td"><input name="manager.ename" type="text" id="manager.ename" ltype="text" maxlength="15"/> <font color="red">*</font></td>
+        <td align="left"></td>
     </tr>
     <tr>
-        <td align="right" class="l-table-edit-td">状态：</td>
+        <td align="right" class="l-table-edit-td">部门：</td>
         <td align="left" class="l-table-edit-td">
-        <select name="manager.status" id="manager.status" >
-        <option value="1">有效</option>
-        <option value="0">无效</option>
+        <div style="width:300px; height:300px; margin:10px; float:left; border:1px solid #ccc; overflow:auto;  ">
+		<ul id="tree1"></ul>
+		</div>
+        </td>
+        <td align="left"></td>
+    </tr>
+    <tr>
+        <td align="right" class="l-table-edit-td">职位：</td>
+        <td align="left" class="l-table-edit-td">
+        <select name="manager.positionId" id="manager.positionId" >
+        
         </select>
         </td>
         <td align="left"></td>
@@ -125,6 +180,16 @@ function doUpload(element) {
         <c:forEach items="${roleList }" var="role">
         <option value="${role.id }">${role.rolename }</option>
         </c:forEach>
+        </select>
+        </td>
+        <td align="left"></td>
+    </tr>
+    <tr>
+        <td align="right" class="l-table-edit-td">状态：</td>
+        <td align="left" class="l-table-edit-td">
+        <select name="manager.status" id="manager.status" >
+        <option value="1">有效</option>
+        <option value="0">无效</option>
         </select>
         </td>
         <td align="left"></td>

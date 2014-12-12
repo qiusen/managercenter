@@ -70,4 +70,24 @@ public class DepartmentServiceImpl implements IDepartmentService {
 	public Department selectDepartmentById(Department department) {
 		return departmentDAO.selectDepartmentById(department);
 	}
+
+
+	/* (non-Javadoc)
+	 * @see com.dihaitech.managercenter.service.IDepartmentService#editSaveLeaderEmail(com.dihaitech.managercenter.model.Department)
+	 */
+	@Override
+	public int editSaveLeaderEmail(Department department) {
+		// TODO Auto-generated method stub
+		return departmentDAO.editSaveLeaderEmail(department);
+	}
+
+
+	/* (non-Javadoc)
+	 * @see com.dihaitech.managercenter.service.IDepartmentService#selectDepartmentByIds(com.dihaitech.managercenter.model.Department)
+	 */
+	@Override
+	public List<Department> selectDepartmentByIds(Department department) {
+		// TODO Auto-generated method stub
+		return departmentDAO.selectDepartmentByIds(department);
+	}
 }

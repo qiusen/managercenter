@@ -124,4 +124,24 @@ public class ManagerServiceImpl implements IManagerService {
 	}
 
 
+	/* (non-Javadoc)
+	 * @see com.dihaitech.managercenter.service.IManagerService#selectManagerByDepId(com.dihaitech.managercenter.model.Manager)
+	 */
+	@Override
+	public List<Manager> selectManagerByDepId(Manager manager) {
+		// TODO Auto-generated method stub
+		return this.managerDAO.selectManagerByDepId(manager);
+	}
+
+
+	/* (non-Javadoc)
+	 * @see com.dihaitech.managercenter.service.IManagerService#selectManagerByEmails(com.dihaitech.managercenter.model.Manager)
+	 */
+	@Override
+	public List<Manager> selectManagerByEmails(Manager manager) {
+		// TODO Auto-generated method stub
+		return this.managerDAO.selectManagerByEmails(manager);
+	}
+
+
 }

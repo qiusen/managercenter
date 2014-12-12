@@ -8,8 +8,12 @@
 	    <create creator="spring" javascript="cityDwr">
 	      <param name="beanName" value="cityAjax"/>
 	    </create>
+	    <create creator="spring" javascript="positionDwr">
+	      <param name="beanName" value="positionAjax"/>
+	    </create>
 	    
 	    <convert converter="bean" match="com.dihaitech.managercenter.model.Catalog"/>
 	    <convert converter="bean" match="com.dihaitech.managercenter.model.City"/>
+	    <convert converter="bean" match="com.dihaitech.managercenter.model.Position"/>
 	</allow>
 </dwr>

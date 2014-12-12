@@ -70,4 +70,14 @@ public class PositionServiceImpl implements IPositionService {
 	public Position selectPositionById(Position position) {
 		return positionDAO.selectPositionById(position);
 	}
+
+
+	/* (non-Javadoc)
+	 * @see com.dihaitech.managercenter.service.IPositionService#selectPositionByIds(com.dihaitech.managercenter.model.Position)
+	 */
+	@Override
+	public List<Position> selectPositionByIds(Position position) {
+		// TODO Auto-generated method stub
+		return positionDAO.selectPositionByIds(position);
+	}
 }

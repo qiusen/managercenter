@@ -63,4 +63,11 @@ public interface IPositionService {
 	 * @return
 	 */
 	public int deleteByIds(String str);
+	
+	/**
+	 * 根据IDS获取职位
+	 * @param position
+	 * @return
+	 */
+	public List<Position> selectPositionByIds(Position position);
 }

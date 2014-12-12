@@ -11,7 +11,10 @@ import com.dihaitech.managercenter.controller.action.common.UserAction;
 import com.dihaitech.managercenter.model.Manager;
 import com.dihaitech.managercenter.model.ManagerInfo;
 import com.dihaitech.managercenter.model.Role;
+import com.dihaitech.managercenter.service.IDepPosService;
+import com.dihaitech.managercenter.service.IDepartmentService;
 import com.dihaitech.managercenter.service.IManagerInfoService;
+import com.dihaitech.managercenter.service.IPositionService;
 import com.dihaitech.managercenter.service.IRoleService;
 
 /**
@@ -29,6 +32,12 @@ public class ManagerInfoAction extends BaseAction {
 	private IManagerInfoService managerInfoService;
 	
 	private IRoleService roleService;
+	
+	private IDepartmentService departmentService;
+	
+	private IPositionService positionService;
+	
+	private IDepPosService depPosService;
 	
 	public ManagerInfo getManagerInfo() {
 		return managerInfo;
@@ -51,6 +60,30 @@ public class ManagerInfoAction extends BaseAction {
 
 	public void setRoleService(IRoleService roleService) {
 		this.roleService = roleService;
+	}
+	
+	public IDepartmentService getDepartmentService() {
+		return departmentService;
+	}
+
+	public void setDepartmentService(IDepartmentService departmentService) {
+		this.departmentService = departmentService;
+	}
+
+	public IPositionService getPositionService() {
+		return positionService;
+	}
+
+	public void setPositionService(IPositionService positionService) {
+		this.positionService = positionService;
+	}
+
+	public IDepPosService getDepPosService() {
+		return depPosService;
+	}
+
+	public void setDepPosService(IDepPosService depPosService) {
+		this.depPosService = depPosService;
 	}
 
 	/* 

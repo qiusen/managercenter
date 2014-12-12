@@ -46,6 +46,16 @@ public class Manager extends BaseModel{
 	private Integer status;
 	
 	/**
+	 * 部门ID
+	 */
+	private Integer departmentId;
+	
+	/**
+	 * 职位ID
+	 */
+	private Integer positionId;
+	
+	/**
 	 * 角色ID
 	 */
 	private Integer roleId;
@@ -147,6 +157,18 @@ public class Manager extends BaseModel{
 	}
 	public void setLogo(String logo) {
 		this.logo = logo;
+	}
+	public Integer getDepartmentId() {
+		return departmentId;
+	}
+	public void setDepartmentId(Integer departmentId) {
+		this.departmentId = departmentId;
+	}
+	public Integer getPositionId() {
+		return positionId;
+	}
+	public void setPositionId(Integer positionId) {
+		this.positionId = positionId;
 	}
 	
 	

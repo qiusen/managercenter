@@ -63,4 +63,18 @@ public interface IDepartmentService {
 	 * @return
 	 */
 	public int deleteByIds(String str);
+	
+	/**
+	 * 修改主管邮箱
+	 * @param department
+	 * @return
+	 */
+	public int editSaveLeaderEmail(Department department);
+	
+	/**
+	 * 根据IDS获取部门
+	 * @param department
+	 * @return
+	 */
+	public List<Department> selectDepartmentByIds(Department department);
 }

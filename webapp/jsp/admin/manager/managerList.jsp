@@ -37,6 +37,26 @@ function f_initGrid(){
             }
             return h;
         } },
+        { display: '部门', name: 'departmentId', width: '20%' ,render: function (rowdata, rowindex, value)
+        {
+        	var r = "-";
+        	<c:forEach items="${departmentList }" var="department">
+        	if(rowdata.departmentId==${department.id}){
+                r = "${department.name}|${department.code}";
+            }
+            </c:forEach>
+            return r;
+        }  },
+        { display: '职位', name: 'positionId', width: '20%' ,render: function (rowdata, rowindex, value)
+        {
+        	var r = "-";
+        	<c:forEach items="${positionList }" var="position">
+        	if(rowdata.positionId==${position.id}){
+                r = "${position.name}|${position.code}";
+            }
+            </c:forEach>
+            return r;
+        }  },
         { display: '角色', name: 'roleId', width: '10%' ,render: function (rowdata, rowindex, value)
         {
         	var r = "-";

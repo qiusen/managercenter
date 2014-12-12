@@ -23,7 +23,13 @@
             <if test ="status != null and status > -1">
 				and `STATUS` = #{status}
 			</if>
-            <if test ="roleId != null and roleId > -1">
+			<if test ="departmentId != null and departmentId > -1">
+				and `DEPARTMENT_ID` = #{departmentId}
+			</if>
+            <if test ="positionId != null and positionId > -1">
+				and `POSITION_ID` = #{positionId}
+			</if>
+			<if test ="roleId != null and roleId > -1">
 				and `ROLE_ID` = #{roleId}
 			</if>
 	        <if test ="creator != null and creator != ''">
@@ -42,7 +48,7 @@
 	</sql>
 	
 	<sql id="managerField">
-		`ID`, `PASSWORD`, `EMAIL`, `NICKNAME`, `ENAME`, `LOGO`, `STATUS`, `ROLE_ID`, `CREATOR`, `CREATETIME`, `LOGINTIME`, `LOGINIP`
+		`ID`, `PASSWORD`, `EMAIL`, `NICKNAME`, `ENAME`, `LOGO`, `STATUS`, `DEPARTMENT_ID`, `POSITION_ID`, `ROLE_ID`, `CREATOR`, `CREATETIME`, `LOGINTIME`, `LOGINIP`
 	</sql>
 	
 	<resultMap id="managerMap" type="manager">
@@ -53,6 +59,8 @@
 	    	<result property="ename" column="ENAME" javaType="java.lang.String" jdbcType="VARCHAR" />
 	    	<result property="logo" column="LOGO" javaType="java.lang.String" jdbcType="VARCHAR" />
 	    	<result property="status" column="STATUS" javaType="java.lang.Integer" jdbcType="INTEGER" />
+	    	<result property="departmentId" column="DEPARTMENT_ID" javaType="java.lang.Integer" jdbcType="INTEGER" />
+	    	<result property="positionId" column="POSITION_ID" javaType="java.lang.Integer" jdbcType="INTEGER" />
 	    	<result property="roleId" column="ROLE_ID" javaType="java.lang.Integer" jdbcType="INTEGER" />
 	    	<result property="creator" column="CREATOR" javaType="java.lang.String" jdbcType="VARCHAR" />
 	    	<result property="createtime" column="CREATETIME" javaType="java.util.Date" jdbcType="TIMESTAMP" />
@@ -68,6 +76,8 @@
            `ENAME`, 
            `LOGO`,
            `STATUS`, 
+           `DEPARTMENT_ID`,
+           `POSITION_ID`,
            `ROLE_ID`, 
            `CREATOR`, 
            `CREATETIME`, 
@@ -81,6 +91,8 @@
             #{ename}, 
             #{logo}, 
             #{status}, 
+            #{departmentId},
+            #{positionId},
             #{roleId}, 
             #{creator}, 
             #{createtime}, 
@@ -106,6 +118,8 @@
               `ENAME` = #{ename}, 
               `LOGO`= #{logo},
               `STATUS` = #{status}, 
+              `DEPARTMENT_ID` = #{departmentId},
+              `POSITION_ID` = #{positionId},
               `ROLE_ID` = #{roleId}, 
               `LOGINTIME` = #{logintime}, 
               `LOGINIP` = #{loginip}
@@ -155,4 +169,16 @@
               `PASSWORD` = #{password}
         	where ID = #{id}
 	</update>
+	
+	<select id="selectManagerByDepId" parameterType="manager" resultMap="managerMap" >
+		SELECT <include refid="managerField" /> FROM `manager`
+	        where `DEPARTMENT_ID` = #{departmentId}
+			order by ID 
+	</select>
+	
+	<select id="selectManagerByEmails" parameterType="manager" resultMap="managerMap" >
+		SELECT <include refid="managerField" /> FROM `manager`
+	        where `EMAIL` in (${idStr})
+			order by ID 
+	</select>
 </mapper>

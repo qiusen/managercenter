@@ -97,4 +97,18 @@ public interface IManagerService {
 	 * @return
 	 */
 	public Long selectCountByRoleId(Manager manager);
+	
+	/**
+	 * 根据部门ID获取用户
+	 * @param manager
+	 * @return
+	 */
+	public List<Manager> selectManagerByDepId(Manager manager);
+	
+	/**
+	 * 根据EMAIL集合获取用户
+	 * @param manager
+	 * @return
+	 */
+	public List<Manager> selectManagerByEmails(Manager manager);
 }

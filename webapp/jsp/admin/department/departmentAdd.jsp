@@ -93,6 +93,18 @@ function getChecked() {
     	<td align="left"></td>
     </tr>
     <tr>
+    	<td align="right" class="l-table-edit-td">部门主管：</td>
+    	<td align="left" class="l-table-edit-td">
+    	<select name="department.leaderEmail" id="department.leaderEmail">
+    	<option value="">请选择</option>
+    	
+    	<option value="2">部门</option>
+    	<option value="3">项目组</option>
+    	</select>
+    	</td>
+    	<td align="left"></td>
+    </tr>
+    <tr>
     	<td align="right" class="l-table-edit-td">上级部门：</td>
     	<td align="left" class="l-table-edit-td">
     	<div style="width:300px; height:300px; margin:10px; float:left; border:1px solid #ccc; overflow:auto;  ">

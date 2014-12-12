@@ -88,7 +88,7 @@
 		<include refid="positionLikeWhere" />
 	</select>
 	
-	<select id="selectAll" parameterType="position" resultMap="positionMap" >
+	<select id="selectAll" parameterType="position" resultMap="positionMap" useCache="false">
 		select * from `position`
 	</select>
 	
@@ -97,5 +97,11 @@
 	        <include refid="positionLikeWhere" />
 			order by ID desc
 	        <include refid="positionPage" /> 
+	</select>
+	
+	<select id="selectPositionByIds" parameterType="position" resultMap="positionMap" >
+		SELECT <include refid="positionField" /> FROM `position`
+	        where id in(${idStr})
+			order by ID
 	</select>
 </mapper>

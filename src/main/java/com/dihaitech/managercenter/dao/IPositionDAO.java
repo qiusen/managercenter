@@ -69,4 +69,11 @@ public interface IPositionDAO {
 	 * @return
 	 */
 	public List<Position> selectAll();
+	
+	/**
+	 * 根据IDS获取职位
+	 * @param position
+	 * @return
+	 */
+	public List<Position> selectPositionByIds(Position position);
 }
