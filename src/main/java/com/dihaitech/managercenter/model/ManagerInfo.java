@@ -25,7 +25,7 @@ public class ManagerInfo extends BaseModel{
 	/**
 	 * 手机
 	 */
-	private String mobel;
+	private String mobile;
 	
 	/**
 	 * 性别：0、保密；1、男；2、女
@@ -73,11 +73,12 @@ public class ManagerInfo extends BaseModel{
 	public void setTel(String tel) {
 		this.tel = tel;
 	}
-	public String getMobel() {
-		return mobel;
+	
+	public String getMobile() {
+		return mobile;
 	}
-	public void setMobel(String mobel) {
-		this.mobel = mobel;
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
 	}
 	public Integer getSex() {
 		return sex;

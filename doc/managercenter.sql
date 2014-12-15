@@ -32,7 +32,7 @@ CREATE TABLE `MANAGER_INFO` (
   `ID` int(11) NOT NULL auto_increment,
   `EMAIL` varchar(255) NOT NULL COMMENT '邮箱',
   `TEL`  varchar(255) NOT NULL COMMENT '座机',
-  `MOBEL` varchar(255) NOT NULL COMMENT '手机',
+  `MOBILE` varchar(255) NOT NULL COMMENT '手机',
   `SEX` int(2) NOT NULL COMMENT '性别：0、保密；1、男；2、女',
   `ADDRESS` varchar(255) NOT NULL COMMENT '联系地址',
   `QQ` varchar(255) NOT NULL COMMENT 'QQ',

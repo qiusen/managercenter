@@ -15,8 +15,8 @@
 	        <if test ="tel != null and tel != ''">
 			    and `TEL` like '%${tel}%'
 		    </if>
-	        <if test ="mobel != null and mobel != ''">
-			    and `MOBEL` like '%${mobel}%'
+	        <if test ="mobile != null and mobile != ''">
+			    and `MOBILE` like '%${mobile}%'
 		    </if>
             <if test ="sex != null and sex > -1">
 				and `SEX` = #{sex}
@@ -37,14 +37,14 @@
 	</sql>
 	
 	<sql id="managerInfoField">
-		`ID`, `EMAIL`, `TEL`, `MOBEL`, `SEX`, `ADDRESS`, `QQ`, `UPDATETIME`
+		`ID`, `EMAIL`, `TEL`, `MOBILE`, `SEX`, `ADDRESS`, `QQ`, `UPDATETIME`
 	</sql>
 	
 	<resultMap id="managerInfoMap" type="managerInfo">
 	    	<result property="id" column="ID" javaType="java.lang.Integer" jdbcType="INTEGER" />
 	    	<result property="email" column="EMAIL" javaType="java.lang.String" jdbcType="VARCHAR" />
 	    	<result property="tel" column="TEL" javaType="java.lang.String" jdbcType="VARCHAR" />
-	    	<result property="mobel" column="MOBEL" javaType="java.lang.String" jdbcType="VARCHAR" />
+	    	<result property="mobile" column="MOBILE" javaType="java.lang.String" jdbcType="VARCHAR" />
 	    	<result property="sex" column="SEX" javaType="java.lang.Integer" jdbcType="INTEGER" />
 	    	<result property="address" column="ADDRESS" javaType="java.lang.String" jdbcType="VARCHAR" />
 	    	<result property="qq" column="QQ" javaType="java.lang.String" jdbcType="VARCHAR" />
@@ -55,7 +55,7 @@
 		insert into `manager_info` (
            `EMAIL`, 
            `TEL`, 
-           `MOBEL`, 
+           `MOBILE`, 
            `SEX`, 
            `ADDRESS`, 
            `QQ`, 
@@ -64,7 +64,7 @@
 		(
             #{email}, 
             #{tel}, 
-            #{mobel}, 
+            #{mobile}, 
             #{sex}, 
             #{address}, 
             #{qq}, 
@@ -83,7 +83,7 @@
 		update `manager_info` set 
               `EMAIL` = #{email}, 
               `TEL` = #{tel}, 
-              `MOBEL` = #{mobel}, 
+              `MOBILE` = #{mobile}, 
               `SEX` = #{sex}, 
               `ADDRESS` = #{address}, 
               `QQ` = #{qq}, 
@@ -94,7 +94,7 @@
 	<update id="editSaveManagerInfoByEmail" parameterType="managerInfo">
 		update `manager_info` set 
               `TEL` = #{tel}, 
-              `MOBEL` = #{mobel}, 
+              `MOBILE` = #{mobile}, 
               `SEX` = #{sex}, 
               `ADDRESS` = #{address}, 
               `QQ` = #{qq}, 
