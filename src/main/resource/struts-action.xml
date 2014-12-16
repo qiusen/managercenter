@@ -6,7 +6,8 @@
 		extends="struts-interceptor">
 		<!-- 登录登出的Action -->
 		<action name="login" class="login">
-			<result name="success" type="redirect">/jsp/main.jsp</result>
+		    <result name="success" type="redirect">/jsp/choose.jsp</result>
+			<result name="main" type="redirect">/jsp/main.jsp</result>
 			<result name="login" type="dispatcher">/index.jsp</result>
 			<result name="logOff" type="redirect">/index.jsp</result>
 			<interceptor-ref name="common-params" />

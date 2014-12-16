@@ -208,6 +208,7 @@ public class LoginAction extends BaseAction {
 			manager = (Manager)this.getSession().getAttribute("manager");
 			//记录日志
 			this.recordLogs(logger, "logoff", manager.getNickname() + " 登出");
+			this.getSession().removeAttribute("manager");
 		}
 		
 		return "logOff";
