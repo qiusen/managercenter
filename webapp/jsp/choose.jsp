@@ -11,6 +11,11 @@
     DD_belatedPNG.fix('div');
 </script>
 <![endif]-->
+<script type="text/javascript">
+<c:if test="${sessionScope.manager==null}">
+window.location="${base}";
+</c:if>
+</script>
 </head>
 <body>
     <div class="Box">
