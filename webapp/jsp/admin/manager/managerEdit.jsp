@@ -108,11 +108,12 @@ function chengePosition(depId){
 function changePositionCallBack(positionList){
 	var mp= document.getElementById("manager.positionId");
 	clearSelect(mp);	//清空
+	mp.options[0] = new Option("请选择", 0);
 	if(positionList!= null && positionList.length>0){
 		for(var i=0;i<positionList.length;i++){
-			mp.options[i] = new Option(positionList[i].name, positionList[i].id);
+			mp.options[i+1] = new Option(positionList[i].name, positionList[i].id);
 			if(positionList[i].id==${requestScope.manager.positionId}){
-				mp.options[i].selected = "selected";
+				mp.options[i+1].selected = "selected";
 			}
 		}
 	}
@@ -190,7 +191,7 @@ function changePositionCallBack(positionList){
         <td align="right" class="l-table-edit-td">职位：</td>
         <td align="left" class="l-table-edit-td">
         <select name="manager.positionId" id="manager.positionId" >
-        
+        <option value="0">请选择</option>
         </select>
         </td>
         <td align="left"></td>
