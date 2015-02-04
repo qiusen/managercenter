@@ -39,7 +39,7 @@ $.ligerDialog.success('修改成功');
     </tr>
     <tr>
         <td align="right" class="l-table-edit-td">手机：</td>
-        <td align="left" class="l-table-edit-td"><input name="managerInfo.mobel" type="text" id="managerInfo.mobel" ltype="text" value="${requestScope.managerInfo.mobel}"/></td>
+        <td align="left" class="l-table-edit-td"><input name="managerInfo.mobile" type="text" id="managerInfo.mobile" ltype="text" value="${requestScope.managerInfo.mobile}"/></td>
         <td align="left"></td>
     </tr>
     <tr>
