@@ -186,3 +186,49 @@ CREATE TABLE `DICT` (
   PRIMARY KEY  (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='字典';
 
+
+
+
+
+
+
+
+DROP TABLE IF EXISTS MEMBER CASCADE;
+CREATE TABLE `MEMBER` (
+  `ID` int(11) NOT NULL auto_increment,
+  `USERNAME` varchar(255) NOT NULL COMMENT '用户名',
+  `PASSWD` varchar(255) NOT NULL COMMENT '密码',
+  `NAME` varchar(255) NOT NULL COMMENT '姓名',
+  `STATUS` int(2) NOT NULL COMMENT '状态',
+  `REGTIME` datetime default '2000-01-01 00:00:00' COMMENT '注册时间',
+  `LOGINTIME` datetime default '2000-01-01 00:00:00' COMMENT '最后登录时间',
+  PRIMARY KEY  (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='会员';
+
+
+DROP TABLE IF EXISTS MEMBER_INFO CASCADE;
+CREATE TABLE `MEMBER_INFO` (
+  `ID` int(11) NOT NULL auto_increment,
+  `USERNAME` varchar(255) NOT NULL COMMENT '用户名',
+  `SEX` int(2) NOT NULL COMMENT '性别：0、保密；1、男；2、女',
+  `EMAIL` varchar(255) NOT NULL COMMENT '邮箱',
+  `QQ` varchar(255) NOT NULL COMMENT 'QQ',
+  `TEL`  varchar(255) NOT NULL COMMENT '座机',
+  `MOBILE` varchar(255) NOT NULL COMMENT '手机',
+  
+  `NATIVE_PROVINCE_CODE` varchar(255) default NULL COMMENT '籍贯省编号',
+  `NATIVE_CITY_CODE` varchar(255) default NULL COMMENT '籍贯市编号',
+  `NATIVE_AREA_CODE` varchar(255) default NULL COMMENT '籍贯区编号',
+  `ADDR_PROVINCE_CODE` varchar(255) default NULL COMMENT '现居省编号',
+  `ADDR_CITY_CODE` varchar(255) default NULL COMMENT '现居市编号',
+  `ADDR_AREA_CODE` varchar(255) default NULL COMMENT '现居区编号',
+  `ADDRESS` varchar(255) default NULL COMMENT '地址',
+  `POST_CODE` varchar(255) default NULL COMMENT '邮编',
+  
+  
+  `CREATETIME` datetime default '2000-01-01 00:00:00' COMMENT '创建时间',
+  `UPDATETIME` datetime default '2000-01-01 00:00:00' COMMENT '修改时间',
+  PRIMARY KEY  (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='会员详细信息';
+
+
