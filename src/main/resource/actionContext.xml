@@ -3,16 +3,16 @@
 <beans default-autowire="byName">
 
 	<!-- 登录登出的Action -->
-	<bean id="login" class="com.dihaitech.managercenter.controller.action.common.LoginAction"
+	<bean id="login" class="com.dihaiboyun.managercenter.controller.action.common.LoginAction"
 		scope="prototype">
 	</bean>
 	
 	<!-- 用户个人信息Action -->
-	<bean id="userInfo" class="com.dihaitech.managercenter.controller.action.common.UserAction"
+	<bean id="userInfo" class="com.dihaiboyun.managercenter.controller.action.common.UserAction"
 		scope="prototype">
 	</bean>
 	<!-- 管理员详细信息 action -->
-	  <bean id="managerInfoAction" class="com.dihaitech.managercenter.controller.action.managerInfo.ManagerInfoAction" scope="prototype">
+	  <bean id="managerInfoAction" class="com.dihaiboyun.managercenter.controller.action.managerInfo.ManagerInfoAction" scope="prototype">
 			<property name="managerInfoService">
 				<ref bean="managerInfoService" />
 			</property>
@@ -31,14 +31,14 @@
 	  </bean>
 	  
 	  <!-- 部门 action -->
-	  <bean id="departmentAction" class="com.dihaitech.managercenter.controller.action.department.DepartmentAction" scope="prototype">
+	  <bean id="departmentAction" class="com.dihaiboyun.managercenter.controller.action.department.DepartmentAction" scope="prototype">
 			<property name="departmentService">
 				<ref bean="departmentService" />
 			</property>
 	  </bean>
 	  
 	  <!-- 职位 action -->
-	  <bean id="positionAction" class="com.dihaitech.managercenter.controller.action.position.PositionAction" scope="prototype">
+	  <bean id="positionAction" class="com.dihaiboyun.managercenter.controller.action.position.PositionAction" scope="prototype">
 			<property name="positionService">
 				<ref bean="positionService" />
 			</property>
@@ -47,70 +47,70 @@
 
 
 	  <!-- 管理员 action -->
-	  <bean id="managerAction" class="com.dihaitech.managercenter.controller.action.manager.ManagerAction" scope="prototype">
+	  <bean id="managerAction" class="com.dihaiboyun.managercenter.controller.action.manager.ManagerAction" scope="prototype">
 			<property name="managerService">
 				<ref bean="managerService" />
 			</property>
 	  </bean>
 	  
 	  <!-- 角色 action -->
-	  <bean id="roleAction" class="com.dihaitech.managercenter.controller.action.role.RoleAction" scope="prototype">
+	  <bean id="roleAction" class="com.dihaiboyun.managercenter.controller.action.role.RoleAction" scope="prototype">
 			<property name="roleService">
 				<ref bean="roleService" />
 			</property>
 	  </bean>
 	  
 	  <!-- 菜单 action -->
-	  <bean id="menuAction" class="com.dihaitech.managercenter.controller.action.menu.MenuAction" scope="prototype">
+	  <bean id="menuAction" class="com.dihaiboyun.managercenter.controller.action.menu.MenuAction" scope="prototype">
 			<property name="menuService">
 				<ref bean="menuService" />
 			</property>
 	  </bean>
 	  
 	  <!-- 目录 action -->
-	  <bean id="catalogAction" class="com.dihaitech.managercenter.controller.action.catalog.CatalogAction" scope="prototype">
+	  <bean id="catalogAction" class="com.dihaiboyun.managercenter.controller.action.catalog.CatalogAction" scope="prototype">
 			<property name="catalogService">
 				<ref bean="catalogService" />
 			</property>
 	  </bean>
 	  
 	  <!-- 模块 action -->
-	  <bean id="moduleAction" class="com.dihaitech.managercenter.controller.action.module.ModuleAction" scope="prototype">
+	  <bean id="moduleAction" class="com.dihaiboyun.managercenter.controller.action.module.ModuleAction" scope="prototype">
 			<property name="moduleService">
 				<ref bean="moduleService" />
 			</property>
 	  </bean>
 	  
 	  <!-- 市 action -->
-	  <bean id="cityAction" class="com.dihaitech.managercenter.controller.action.city.CityAction" scope="prototype">
+	  <bean id="cityAction" class="com.dihaiboyun.managercenter.controller.action.city.CityAction" scope="prototype">
 			<property name="cityService">
 				<ref bean="cityService" />
 			</property>
 	  </bean>
 	  
 	  <!-- 省 action -->
-	  <bean id="provinceAction" class="com.dihaitech.managercenter.controller.action.province.ProvinceAction" scope="prototype">
+	  <bean id="provinceAction" class="com.dihaiboyun.managercenter.controller.action.province.ProvinceAction" scope="prototype">
 			<property name="provinceService">
 				<ref bean="provinceService" />
 			</property>
 	  </bean>
 	  
 	  <!-- 区 action -->
-	  <bean id="areaAction" class="com.dihaitech.managercenter.controller.action.area.AreaAction" scope="prototype">
+	  <bean id="areaAction" class="com.dihaiboyun.managercenter.controller.action.area.AreaAction" scope="prototype">
 			<property name="areaService">
 				<ref bean="areaService" />
 			</property>
 	  </bean>
 	  
 	  <!-- 日志 action -->
-	  <bean id="logsAction" class="com.dihaitech.managercenter.controller.action.logs.LogsAction" scope="prototype">
+	  <bean id="logsAction" class="com.dihaiboyun.managercenter.controller.action.logs.LogsAction" scope="prototype">
 			<property name="logsService">
 				<ref bean="logsService" />
 			</property>
 	  </bean>
 	  
 	  <!-- 字典 action -->
-	  <bean id="dictAction" class="com.dihaitech.managercenter.controller.action.dict.DictAction" scope="prototype">
+	  <bean id="dictAction" class="com.dihaiboyun.managercenter.controller.action.dict.DictAction" scope="prototype">
 			<property name="dictService">
 				<ref bean="dictService" />
 			</property>

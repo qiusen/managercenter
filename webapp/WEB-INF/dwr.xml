@@ -12,8 +12,8 @@
 	      <param name="beanName" value="positionAjax"/>
 	    </create>
 	    
-	    <convert converter="bean" match="com.dihaitech.managercenter.model.Catalog"/>
-	    <convert converter="bean" match="com.dihaitech.managercenter.model.City"/>
-	    <convert converter="bean" match="com.dihaitech.managercenter.model.Position"/>
+	    <convert converter="bean" match="com.dihaiboyun.managercenter.model.Catalog"/>
+	    <convert converter="bean" match="com.dihaiboyun.managercenter.model.City"/>
+	    <convert converter="bean" match="com.dihaiboyun.managercenter.model.Position"/>
 	</allow>
 </dwr>

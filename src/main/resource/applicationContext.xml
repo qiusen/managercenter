@@ -43,7 +43,7 @@
 	</bean>
 
 	<aop:config proxy-target-class="true">
-		<aop:advisor pointcut="execution(* com.dihaitech.managercenter.service.*.*(..))"
+		<aop:advisor pointcut="execution(* com.dihaiboyun.managercenter.service.*.*(..))"
 			advice-ref="txAdvice" />
 	</aop:config>
 
@@ -81,17 +81,17 @@
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation" value="classpath:mybatis-config.xml"></property>
-		<property name="typeAliasesPackage" value="com.dihaitech.managercenter.model" />
-		<property name="mapperLocations" value="classpath*:com/dihaitech/managercenter/dao//**/*.xml" />
+		<property name="typeAliasesPackage" value="com.dihaiboyun.managercenter.model" />
+		<property name="mapperLocations" value="classpath*:com/dihaiboyun/managercenter/dao//**/*.xml" />
 	</bean>
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.dihaitech.managercenter.dao" />
+		<property name="basePackage" value="com.dihaiboyun.managercenter.dao" />
 	</bean>
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg index="0" ref="sqlSessionFactory" />
 	</bean>
 
-	<bean id="property" class="com.dihaitech.managercenter.common.Property">
+	<bean id="property" class="com.dihaiboyun.managercenter.common.Property">
 		<property name="BASE" value="${system.base}"></property>
 		<property name="PAGESIZE" value="${system.pageSize}"></property>
 		<property name="ACTION_EXT" value="${system.actionExt}"></property>
