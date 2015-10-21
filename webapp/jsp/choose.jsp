@@ -39,11 +39,11 @@ window.location="${base}";
                     <a href="http://localhost:8080/oa/login.${actionExt}?email=${sessionScope.manager.email }&password=${sessionScope.manager.password }" target="_blank">OA办公系统</a>
                 </div>
                 <div class="line1 MT10 mod">
-                    <a href="http://localhost:8080/product/login.${actionExt}?email=${sessionScope.manager.email }&password=${sessionScope.manager.password }" target="_blank">产品库</a>
+                    <a href="http://localhost:8080/shop/login.${actionExt}?email=${sessionScope.manager.email }&password=${sessionScope.manager.password }" target="_blank">商城</a>
                 </div>
                 
                 <div class="line1 MT10 mod">
-                    <a href="http://localhost:8080/acomp/login.${actionExt}?email=${sessionScope.manager.email }&password=${sessionScope.manager.password }" target="_blank">CMS</a>
+                    <a href="http://localhost:8080/cms/login.${actionExt}?email=${sessionScope.manager.email }&password=${sessionScope.manager.password }" target="_blank">CMS</a>
                 </div>
 
             </div>
